@@ -6,23 +6,23 @@ using RiseReign;
 
 public abstract class Worker : MonoBehaviour, IGoap
 {
+	//Base class for all AI types
 	NavMeshAgent agent;
 	Vector3 previousDestination;
 	// Inventory inv;
 	[Tooltip("Stockpile")]
 	public Inventory stockpile;
-	public Inventory ownInv;
+	public Backpack ownInv;
 	public Inventory forest;
 	public bool interrupt = false;
+	public bool close = false;
 	bool hide = false;
-	public float AggroDistance = 1000.0f;//Line of sight
-
-	public float ArrivalDistance = 1.5f;//Stopping distance
+	public float moveSpeed = 1.5f;
 	void Start()
 	{
 		agent = this.GetComponent<NavMeshAgent>();
 		// inv = this.GetComponent<Inventory>();
-		ownInv = this.GetComponent<Inventory>();
+		ownInv = this.GetComponent<Backpack>();
 	}
 
 	public HashSet<KeyValuePair<string,object>> GetWorldState () 
@@ -36,9 +36,16 @@ public abstract class Worker : MonoBehaviour, IGoap
 		// worldData.Add(new KeyValuePair<string, object>("hasLogs", (inv.trees > 0) ));
 		
 		//Wood Cutter
-		worldData.Add(new KeyValuePair<string, object>("hasTrees", (forest.logs > 3) ));
-		worldData.Add(new KeyValuePair<string, object>("hasLogs", (ownInv.logs > 3) ));
-		worldData.Add(new KeyValuePair<string, object>("hasLogsDelivery", (ownInv.logsToDeliver > 2) ));
+		worldData.Add(new KeyValuePair<string, object>("hasTrees", (forest.logs > 4) ));
+		worldData.Add(new KeyValuePair<string, object>("hasLogs", (ownInv.logs > 4) ));
+		worldData.Add(new KeyValuePair<string, object>("hasLogsDelivery", (ownInv.logsToDeliver > 4) ));
+
+		//Transporter
+		worldData.Add(new KeyValuePair<string, object>("hasBuildingSupplies", (stockpile.buildingSupplies >= 1) ));
+
+		//Builder
+		worldData.Add(new KeyValuePair<string, object>("hasLumber", (stockpile.logs > 1) ));
+		worldData.Add(new KeyValuePair<string, object>("hasTools", (stockpile.tools > 1) ));
 		
 		//Hiding		
 		// worldData.Add(new KeyValuePair<string, object>("Hide", false ));
@@ -56,18 +63,6 @@ public abstract class Worker : MonoBehaviour, IGoap
 
 
 	public bool MoveAgent(GoapAction nextAction) {
-		
-		// if(interrupt)
-		// {
-		// 	// GetComponent<GoapAgent>().DataProvider().PlanAborted(nextAction);
-		// 	PlanAborted(nextAction);
-		// 	// previousDestination = Vector3.zero;
-		// 	// interrupt = false;
-			
-		// 	return true;
-		// }
-		agent.SetDestination(nextAction.target.transform.position);
-		
 		//if we don't need to move anywhere
 		if(previousDestination == nextAction.target.transform.position)
 		{
@@ -81,42 +76,8 @@ public abstract class Worker : MonoBehaviour, IGoap
 			nextAction.setInRange(true);
 			previousDestination = nextAction.target.transform.position;
 			return true;
-		} 
-		
-		else
+		} else
 			return false;
-
-
-		// float fDistance = Vector3.Distance(transform.position, nextAction.target.transform.position);//Get distance to target
-        // if (fDistance < AggroDistance)//If it is in aggro range
-        // {
-        //     GetComponent<NavMeshAgent>().isStopped = false;
-        //     GetComponent<NavMeshAgent>().SetDestination(nextAction.target.transform.position);//Let the nav mesh do the work
-        //     Vector3 v3LookDirection = nextAction.target.transform.position - transform.position;//Look at the target
-        //     v3LookDirection.y = 0;
-        //     Quaternion qRotation = Quaternion.LookRotation(v3LookDirection);
-        //     transform.rotation = Quaternion.Slerp(transform.rotation, qRotation, 0.005f);
-        // }
-
-        // if (interrupt)
-        // {
-        //     GetComponent<GoapAgent>().DataProvider().PlanAborted(nextAction);
-
-        //     PlanAborted(nextAction);
-        //     interrupt = false;
-
-        //     return true;
-        // }
-
-        // if (fDistance <= ArrivalDistance)//If I have arrived
-        // {
-        //     nextAction.setInRange(true);
-        //     return true;
-        // }
-        // else
-        // {
-        //     return false;
-        // }
 	}
 
 	void Update()
@@ -150,9 +111,9 @@ public abstract class Worker : MonoBehaviour, IGoap
 
 	public void PlanAborted (GoapAction aborter)
 	{
-		GetComponent<GoapAgent>().DataProvider().ActionsFinished();
-		aborter.reset ();	//Calling from action scripts
-		aborter.doReset();//Calling from GoapAction.cs
+		// GetComponent<GoapAgent>().DataProvider().ActionsFinished();
+		// aborter.reset ();	//Calling from action scripts
+		// aborter.doReset();//Calling from GoapAction.cs
 	}
 
 	public bool GetNeedsToHide()

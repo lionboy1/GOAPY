@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour {
 	public int breadLevel = 0;
 	public int logs = 0;
 	public int logsToDeliver = 0;
+	public int buildingSupplies = 0;
+	public int tools = 0;
 	// public int trees = 0;
 	public int drawOffset = 0;
 	public new string name = "";

@@ -9,7 +9,7 @@ public class CutTreeAction : GoapAction {
 	float startTime = 0;
 	public float workDuration = 10; // seconds
     public Inventory forest;
-	public Inventory ownInv;
+	public Backpack ownInv;
 	Animator anim;
 	NavMeshAgent _agent;
 	[SerializeField] GameObject log;
@@ -20,6 +20,7 @@ public class CutTreeAction : GoapAction {
 		addPrecondition ("hasTrees", true);
 		addEffect ("doJob", true);
 		addEffect ("hasFallenLogs", true);
+		addEffect ("hasTrees", false);
 		name = "Cut down trees";
 	}
 
@@ -50,7 +51,7 @@ public class CutTreeAction : GoapAction {
 	
 	public override bool requiresInRange ()
 	{
-		return true; 
+		return true;
 	}
 	
 	public override bool checkProceduralPrecondition (GameObject agent)
@@ -58,58 +59,59 @@ public class CutTreeAction : GoapAction {
 		target = GameObject.FindGameObjectWithTag("Tree");
 		if(target != null)
 		{
-			// _agent.SetDestination(target.transform.position);
 			return true;
-			// if( _agent.pathStatus == NavMeshPathStatus.PathComplete)
-			// return true;
 		}
 		return false;
 	}
 	
 	public override bool perform (GameObject agent)
 	{
-		float dist = Vector3.Distance(target.transform.position, transform.position);
-		if( _agent.remainingDistance <= 3)
+		anim.SetTrigger("cutTree");
+		if (startTime == 0 )
 		{
-			// Debug.Log("Distance to forest " + _agent.remainingDistance);
-			if (startTime == 0 )
-			{
-				Debug.Log("Starting: " + name);
-				startTime = Time.time;
-				anim.SetTrigger("cutTree");
-
-			}
+			startTime = Time.time;
 		}
-		// if (startTime == 0 )
-		// {
-		// 	Debug.Log("Starting: " + name);
-		// 	startTime = Time.time;
-		// 	Debug.Log(startTime);
-		// 	anim.SetTrigger("cutTree");
-		// }
 
 		if (Time.time - startTime > workDuration) 
 		{
-			if( _agent.remainingDistance <= 3)
-			{
-				Debug.Log("Finished: " + name);
-				
-				StartCoroutine("SpawnLog", 0.5f);
-            	
-				
-				completed = true;
-			}
-				
+			// Invoke("UpdateInventories", 1f);
+			forest.logs -= 5;
+			ownInv.logs += 5;
+			
+			completed = true;
+			Instantiate(log, pickupPosition.position, Quaternion.identity);
+			anim.ResetTrigger("cutTree");
 		}
+		
 		return true;
 	}
 	IEnumerator SpawnLog()
 	{
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(workDuration);
 		Instantiate(log, pickupPosition.position, Quaternion.identity);
-		ownInv.logs += 5;
+		
+		// anim.ResetTrigger("cutTree");
+	}
+	IEnumerator PlayCuttingAnimation()
+	{
+		yield return new WaitForSeconds(0.1f);
+		// anim.SetTrigger("cutTree");
+	}
+
+	void UpdateInventories()
+	{
 		forest.logs -= 5;
-		anim.ResetTrigger("cutTree");
+		ownInv.logs += 5;
+		
+		if(forest.logs < 0)
+		{
+			forest.logs = 0;
+		}
+		if(ownInv.logs < 0)
+		{
+			ownInv.logs = 0;
+		}
+		
 	}
 	
 }

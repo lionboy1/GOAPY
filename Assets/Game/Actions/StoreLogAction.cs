@@ -8,14 +8,14 @@ public class StoreLogAction : GoapAction {
 	bool completed = false;
 	float startTime = 0;
 	public float workDuration = 2; // seconds
-	public float ArrivalDistance;
 	Animator anim;
 	NavMeshAgent _agent;
-	public Inventory ownInv;
+	public Backpack ownInv;
 	
 	public StoreLogAction () {
 		// addPrecondition ("hasLogs", true);
-		addPrecondition ("hasLogsDelivery", true);  
+		addPrecondition ("hasLogsDelivery", true);
+		addEffect ("hasLogsDelivery", false);  
 		addEffect ("doJob", true);
 		name = "Deliver logs to saw mill";
 	}
@@ -47,7 +47,7 @@ public class StoreLogAction : GoapAction {
 	
 	public override bool requiresInRange ()
 	{
-		return true; 
+		return true;
 	}
 	
 	public override bool checkProceduralPrecondition (GameObject agent)
@@ -62,34 +62,31 @@ public class StoreLogAction : GoapAction {
 	
 	public override bool perform (GameObject agent)
 	{
-		float dist = Vector3.Distance(target.transform.position, transform.position);
-		if(_agent.remainingDistance < 3)
+		if (startTime == 0)
 		{
-			Debug.Log("Distance to market " + _agent.remainingDistance);
-			if (startTime == 0 )
-			{
-				Debug.Log("Starting: " + name);
-				startTime = Time.time;
-				// if(!_agent.pathPending || !_agent.hasPath)
-				// {
-				// 	startTime = Time.time;
-				// }
-			}
+			Debug.Log("Starting: " + name);
+			startTime = Time.time;
 		}
 		
-		if(Time.time - startTime > workDuration /*!_agent.hasPath || _agent.pathStatus == NavMeshPathStatus.PathComplete*/)
+		if(Time.time - startTime > workDuration)
 		{
-			if (_agent.remainingDistance < 3)
+			Debug.Log("Finished: " + name);
+			// Invoke("UpdateInventories", 1f);
+			ownInv.logsToDeliver -= 5;
+			if(ownInv.logsToDeliver < 0)
 			{
-				Debug.Log("Finished: " + name);
-				if(ownInv.logsToDeliver >= 5)
-				{
-					ownInv.logsToDeliver -= 5;
-					completed = true;
-				}
-			} 
+				ownInv.logsToDeliver = 0;
+			}
+			completed = true;
 		}
 		return true;
 	}
-	
+	void UpdateInventories()
+	{
+		ownInv.logsToDeliver -= 5;
+		if(ownInv.logsToDeliver < 0)
+		{
+			ownInv.logsToDeliver = 0;
+		}
+	}
 }
