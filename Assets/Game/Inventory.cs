@@ -10,7 +10,8 @@ public class Inventory : MonoBehaviour {
 	public int logsToDeliver = 0;
 	public int buildingSupplies = 0;
 	public int tools = 0;
-	// public int trees = 0;
+	public int lumber = 0;
+	public int ironOre = 0;
 	public int drawOffset = 0;
 	public new string name = "";
 	

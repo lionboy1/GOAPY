@@ -11,6 +11,7 @@ public class StoreLogAction : GoapAction {
 	Animator anim;
 	NavMeshAgent _agent;
 	public Backpack ownInv;
+	public Inventory stockpile;
 	
 	public StoreLogAction () {
 		// addPrecondition ("hasLogs", true);
@@ -72,6 +73,7 @@ public class StoreLogAction : GoapAction {
 		{
 			Debug.Log("Finished: " + name);
 			// Invoke("UpdateInventories", 1f);
+			stockpile.logs += 5;
 			ownInv.logsToDeliver -= 5;
 			if(ownInv.logsToDeliver < 0)
 			{

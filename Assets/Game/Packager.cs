@@ -1,15 +1,17 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
-public class TreeCutter : Worker
+public class Packager : Worker
 {
-    // Start is called before the first frame update
+    //Packager allocates various resources for other workers to use
    public override HashSet<KeyValuePair<string,object>> CreateGoalState ()
 	{
 		HashSet<KeyValuePair<string,object>> goal = new HashSet<KeyValuePair<string,object>> ();
 		goal.Add(new KeyValuePair<string, object>("doJob", true ));
+        // goal.Add(new KeyValuePair<string, object>("storeLogs", true ));
+        // goal.Add(new KeyValuePair<string, object>("fellTrees", true ));
 
 		return goal;
 	}

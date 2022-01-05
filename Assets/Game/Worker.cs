@@ -12,6 +12,7 @@ public abstract class Worker : MonoBehaviour, IGoap
 	// Inventory inv;
 	[Tooltip("Stockpile")]
 	public Inventory stockpile;
+	public Inventory lumbermill;
 	public Backpack ownInv;
 	public Inventory forest;
 	public bool interrupt = false;
@@ -40,13 +41,20 @@ public abstract class Worker : MonoBehaviour, IGoap
 		worldData.Add(new KeyValuePair<string, object>("hasLogs", (ownInv.logs > 4) ));
 		worldData.Add(new KeyValuePair<string, object>("hasLogsDelivery", (ownInv.logsToDeliver > 4) ));
 
-		//Transporter
-		worldData.Add(new KeyValuePair<string, object>("hasBuildingSupplies", (stockpile.buildingSupplies >= 1) ));
+		//Saw mill
+		worldData.Add(new KeyValuePair<string, object>("hasLogsStocked", (stockpile.logs > 4) ));
 
 		//Builder
-		worldData.Add(new KeyValuePair<string, object>("hasLumber", (stockpile.logs > 1) ));
+		worldData.Add(new KeyValuePair<string, object>("hasLumber", (lumbermill.lumber > 4) ));
 		worldData.Add(new KeyValuePair<string, object>("hasTools", (stockpile.tools > 1) ));
+
+		//Toolsmith needs Iron ore to make tools
+		worldData.Add(new KeyValuePair<string, object>("hasIronOre", (stockpile.ironOre > 4) ));
 		
+		//Iron ore miner  (also will need pick axe to mine - toolsmith supplies axes)
+		worldData.Add(new KeyValuePair<string, object>("hasIronOre", true ));
+
+
 		//Hiding		
 		// worldData.Add(new KeyValuePair<string, object>("Hide", false ));
 		return worldData;
