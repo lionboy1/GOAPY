@@ -11,10 +11,17 @@ namespace RiseReign
     	public Transform player;
     	public float maxAngle;
     	public float maxRadius;
+		Worker _worker;
     
         public bool isInFOV = false;
     	
     	#endregion
+
+		void Start()
+		{
+			_worker = GetComponent<Worker>();
+			
+		}
     	
     	#region gizmos
     	private void OnDrawGizmos()
@@ -47,7 +54,7 @@ namespace RiseReign
     	}	
     	#endregion
     	#region functions
-    	public static bool inFOV( Transform checkingObject, Transform target, float maxAngle, float maxRadius)
+    	public bool inFOV( Transform checkingObject, Transform target, float maxAngle, float maxRadius)
 	    {
 		    Collider[] overlaps = new Collider[10];
 		    int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps); //checkingObject is the AI, overlaps is the returned collider result that is checked.
@@ -74,6 +81,10 @@ namespace RiseReign
 		    							{
 		    								return true;
 		    							}
+										if(hit.transform.CompareTag("Player"))
+										{
+											_worker.interrupt = true;
+										}
 		    					   }
 
 

@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace RiseReign
 {
-    public class BakeBread : GoapAction {
+    public class DeliverIronOreAction : GoapAction {
 
 		bool completed = false;
 		float startTime = 0;
 		public float workDuration = 2; // seconds
+		public Inventory stockpile;
+		public Backpack ownInv;
 
-		public BakeBread () {
-			addPrecondition ("hasFlour", true); 
-			addEffect ("doJob", true);
-			name = "BakeBread";
+		public DeliverIronOreAction () {
+			addPrecondition ("hasIronOre", true); 
+			addEffect ("mineIronOre", true);
+			name = "Deliver Iron Ore";
 		}
 
 		public override void reset ()
@@ -32,13 +34,10 @@ namespace RiseReign
 
 		public override bool checkProceduralPrecondition (GameObject agent)
 		{	
-			if(!GetComponent<Worker>().interrupt)	
+			target = GameObject.FindGameObjectWithTag("Market");
+			if(target != null)
 			{
-				target = GameObject.FindGameObjectWithTag("Bakery");
-				if(target != null)
-				{
-					return true;
-				}
+				return true;
 			}
 			return false;
 		}
@@ -54,8 +53,8 @@ namespace RiseReign
 			if (Time.time - startTime > workDuration) 
 			{
 				Debug.Log("Finished: " + name);
-				this.GetComponent<Inventory>().flourLevel -= 2;
-				this.GetComponent<Inventory>().breadLevel += 1;
+				ownInv.ironOre -= 5;
+				// stockpile.ironOre += 5;
 				completed = true;
 			}
 			return true;

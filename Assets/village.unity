@@ -671,6 +671,8 @@ MonoBehaviour:
   logsToDeliver: 0
   buildingSupplies: 0
   tools: 0
+  lumber: 0
+  ironOre: 0
   drawOffset: 0
   name: 
 --- !u!1001 &640016122
@@ -841,6 +843,210 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &937793033
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_Name
+      value: Ironore Miner
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_TagString
+      value: WoodCutter
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.132051
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.1320512
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.1320512
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.26791
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 21d5bdf6c810e0f41b049b10ec0e6c14, type: 2}
+    - target: {fileID: 9500000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+--- !u!1 &937793034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+  m_PrefabInstance: {fileID: 937793033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &937793035 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+  m_PrefabInstance: {fileID: 937793033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &937793036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937793034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8616037a2214764fa6ce48d39be5580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Deliver Iron Ore
+  cost: 90
+  target: {fileID: 0}
+  workDuration: 2
+  stockpile: {fileID: 637827613}
+  ownInv: {fileID: 937793040}
+--- !u!114 &937793037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937793034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b5a45262f19f24f852a1f8c8fda689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Mine Iron Ore
+  cost: 100
+  target: {fileID: 0}
+  workDuration: 10
+  ownInv: {fileID: 937793040}
+  stockpile: {fileID: 637827613}
+  pickupHand: {fileID: 0}
+--- !u!114 &937793038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937793034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3160fe4cf713df47b460afeb01fe1c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stockpile: {fileID: 637827613}
+  lumbermill: {fileID: 2097425794}
+  ownInv: {fileID: 937793040}
+  forest: {fileID: 1150682764}
+  interrupt: 0
+  close: 0
+  moveSpeed: 1.5
+--- !u!114 &937793039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937793034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a07630984c23e48a79079359aca64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &937793040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937793034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed33cc63d953d147bd82f1a74368714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flourLevel: 0
+  breadLevel: 0
+  logs: 0
+  logsToDeliver: 0
+  buildingSupplies: 0
+  tools: 0
+  ironOre: 0
+--- !u!195 &937793041
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937793034}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3
+  m_Acceleration: 5
+  avoidancePriority: 50
+  m_AngularSpeed: 800
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &972845614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -917,6 +1123,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
       propertyPath: m_Name
       value: Wood Cutter
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a1044a1fbdbb79b419369e7b86d3dadf, type: 3}
       propertyPath: m_TagString
@@ -1031,6 +1241,8 @@ MonoBehaviour:
   logsToDeliver: 0
   buildingSupplies: 0
   tools: 0
+  lumber: 0
+  ironOre: 0
   drawOffset: 0
   name: 
 --- !u!65 &1150682765
@@ -1123,6 +1335,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1179699989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179699990}
+  m_Layer: 0
+  m_Name: pickup_location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179699990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179699989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.393}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 937793035}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1279486380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1560,7 @@ MonoBehaviour:
   target: {fileID: 637827608}
   workDuration: 5
   ownInv: {fileID: 1626804203}
+  stockpile: {fileID: 637827613}
 --- !u!195 &1626804201
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1363,6 +1606,7 @@ MonoBehaviour:
   logsToDeliver: 0
   buildingSupplies: 0
   tools: 0
+  ironOre: 0
 --- !u!114 &1626804204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,6 +1653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stockpile: {fileID: 1150682764}
+  lumbermill: {fileID: 0}
   ownInv: {fileID: 1626804203}
   forest: {fileID: 1150682764}
   interrupt: 0
@@ -1434,6 +1679,101 @@ MonoBehaviour:
   forest: {fileID: 1150682764}
   pickupHand: {fileID: 737427979}
   ArrivalDistance: 2
+--- !u!1 &1668528914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1668528918}
+  - component: {fileID: 1668528917}
+  - component: {fileID: 1668528916}
+  - component: {fileID: 1668528915}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: IronOreMine
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1668528915
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668528914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1668528916
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668528914}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1668528917
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668528914}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1668528918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668528914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.96, y: 0.385, z: 27.227346}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1770384754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1581,7 +1921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772510334}
   m_LocalRotation: {x: -0.1392943, y: 0.70293605, z: -0.1434509, w: -0.6825686}
-  m_LocalPosition: {x: 52.28, y: 23.1, z: 4.49}
+  m_LocalPosition: {x: 52.28, y: 9.8, z: 15.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1858,6 +2198,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2097425790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 020ec667d6c7341e4a8a849a15cab9fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c244399c99db449869277ae3b79b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flourLevel: 5
+  breadLevel: 0
+  logs: 0
+  logsToDeliver: 0
+  buildingSupplies: 0
+  tools: 0
+  lumber: 0
+  ironOre: 0
+  drawOffset: 0
+  name: 

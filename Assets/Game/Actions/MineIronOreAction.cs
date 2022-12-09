@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RiseReign
 {
-    public class CollectLogFromStockpileAction : GoapAction {
+    public class MineIronOreAction : GoapAction {
 
 		bool completed = false;
 		float startTime = 0;
@@ -15,10 +15,9 @@ namespace RiseReign
 		// [SerializeField] GameObject objToPickup;
 		[SerializeField] Transform pickupHand;
 
-		public CollectLogFromStockpileAction () {
-			addPrecondition ("hasLogsStocked", true);
-			addEffect ("gotLogs", true);
-			name = "pick up log from stockpile to take to saw mill";
+		public MineIronOreAction () {
+			addEffect ("hasIronOre", true);
+			name = "Mine Iron Ore";
 		}
 
 		void Start()
@@ -57,7 +56,7 @@ namespace RiseReign
 
 		public override bool checkProceduralPrecondition (GameObject agent)
 		{	
-			target = GameObject.FindGameObjectWithTag("Stockpile");
+			target = GameObject.FindGameObjectWithTag("IronOreMine");
 			if(target != null)
 			{
 				return true;
@@ -67,6 +66,7 @@ namespace RiseReign
 
 		public override bool perform (GameObject agent)
 		{
+			anim.SetTrigger("pickUp");
 			if (startTime == 0 )
 			{
 				startTime = Time.time;
@@ -74,11 +74,9 @@ namespace RiseReign
 
 			if (Time.time - startTime > workDuration) 
 			{
-				anim.SetTrigger("pickUp");
 
-				ownInv.logs += 5;
-				stockpile.logs -= 5;
-				// Debug.Log("Parenting log to hand");
+
+				ownInv.ironOre += 5;
 				completed = true;
 			}
 			return true;

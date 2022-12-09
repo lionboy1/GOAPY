@@ -1,68 +1,68 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using RiseReign;
+﻿using UnityEngine;
 
-public class CanSeeAction : GoapAction {
+namespace RiseReign
+{
+    public class CanSeeAction : GoapAction {
 
-	//[SerializeField] float timeBetweenAttack = 1.0f;
-	   
-	bool m_sawPlayer = false;
-    Animator anim;
-    Sight sight;
+		//[SerializeField] float timeBetweenAttack = 1.0f;
 
-	void Start()
-    {
-        anim = gameObject.GetComponentInChildren<Animator>();
-        sight = gameObject.GetComponent<Sight>();        
-    }
-    
-    public CanSeeAction(){
-		// addPrecondition("canSeePlayer", false);
-		// addEffect ("canSeePlayer", true);
-		addEffect ("doJob", true);
-    	name = "Can see the player";
-	}
+		bool m_sawPlayer = false;
+	    Animator anim;
+	    Sight sight;
 
-	void Update()
-    {
-        //
-    }
-    
-    public override void reset() {
-		target = null;
-	}
+		void Start()
+	    {
+	        anim = gameObject.GetComponentInChildren<Animator>();
+	        sight = gameObject.GetComponent<Sight>();        
+	    }
+	
+	    public CanSeeAction(){
+			// addPrecondition("canSeePlayer", false);
+			// addEffect ("canSeePlayer", true);
+			addEffect ("doJob", true);
+	    	name = "Can see the player";
+		}
 
-	public override bool isDone(){
-		return m_sawPlayer;
-	}
+		void Update()
+	    {
+	        //
+	    }
+	
+	    public override void reset() {
+			target = null;
+		}
 
-	public override bool requiresInRange(){
-		return false;
-	}
+		public override bool isDone(){
+			return m_sawPlayer;
+		}
 
-	public override bool checkProceduralPrecondition(GameObject agent)
-	{
-		if( sight.isInFOV == true)
+		public override bool requiresInRange(){
+			return false;
+		}
+
+		public override bool checkProceduralPrecondition(GameObject agent)
 		{
-			target = GameObject.FindGameObjectWithTag("Player");
-			if (target != null)
+			if( sight.isInFOV == true)
 			{
-				Debug.Log("I can see the player now");
-				return true;
-			}
-		}	
-		return false;
-	}
+				target = GameObject.FindGameObjectWithTag("Player");
+				if (target != null)
+				{
+					Debug.Log("I can see the player now");
+					return true;
+				}
+			}	
+			return false;
+		}
 
-	public override bool perform(GameObject agent)
-	{
-		m_sawPlayer = true;
-        Debug.Log("Ah ketch eem!");	
+		public override bool perform(GameObject agent)
+		{
+			m_sawPlayer = true;
+	        Debug.Log("Ah ketch eem!");	
 
-		// GetComponent<Worker>().SetHide(true);
-	    return m_sawPlayer;
-	    
-        // return true;
+			// GetComponent<Worker>().SetHide(true);
+		    return m_sawPlayer;
+
+	        // return true;
+		}
 	}
 }
