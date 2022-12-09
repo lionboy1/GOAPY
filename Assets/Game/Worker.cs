@@ -90,6 +90,7 @@ namespace RiseReign
 				GetComponent<GoapAgent>().DataProvider().PlanAborted(nextAction);
 				PlanAborted(nextAction);
 				interrupt = false;
+				Debug.Log("Calling interrupt");
 				return true;
 			}
 

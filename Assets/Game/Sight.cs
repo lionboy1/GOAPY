@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace RiseReign
 {
@@ -14,13 +13,25 @@ namespace RiseReign
 		Worker _worker;
     
         public bool isInFOV = false;
+		public List<Transform> visibleTargetsList = new List<Transform>();
+		public LayerMask targetMask;
+		public LayerMask obstaclemask;
     	
     	#endregion
 
 		void Start()
 		{
 			_worker = GetComponent<Worker>();
-			
+			StartCoroutine("TargetCheck", 0.2f);
+		}
+
+		IEnumerator TargetCheck(float delay)
+		{
+			while(true)
+			{
+				yield return new WaitForSeconds(delay);
+				FindTargets();
+			}
 		}
     	
     	#region gizmos
@@ -53,8 +64,8 @@ namespace RiseReign
     		Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
     	}	
     	#endregion
-    	#region functions
-    	public bool inFOV( Transform checkingObject, Transform target, float maxAngle, float maxRadius)
+    	#region check for target option 1
+    	/*public bool inFOV( Transform checkingObject, Transform target, float maxAngle, float maxRadius)
 	    {
 		    Collider[] overlaps = new Collider[10];
 		    int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps); //checkingObject is the AI, overlaps is the returned collider result that is checked.
@@ -81,9 +92,10 @@ namespace RiseReign
 		    							{
 		    								return true;
 		    							}
-										if(hit.transform.CompareTag("Player"))
+										if(target.CompareTag("Player"))
 										{
-											_worker.interrupt = true;
+											// _worker.interrupt = true;
+											Debug.Log("Player spotted!");
 										}
 		    					   }
 
@@ -94,12 +106,44 @@ namespace RiseReign
             }
             
             return false;
-        }
+        }*/
+		#endregion
+
+		#region Check for targets option 2
+		void FindTargets()
+		{
+			//Start with no visible targets
+			visibleTargetsList.Clear();
+			
+			//Perform sphere cast to detect nearby objects
+			Collider[] targetsWithinView = Physics.OverlapSphere(transform.position, maxRadius, targetMask);
+			for(int i = 0; i < targetsWithinView.Length; i++)
+			{
+				Transform target = targetsWithinView[i].transform;
+				Vector3 targetDir = (target.position - transform.position).normalized;
+				if(Vector3.Angle(transform.forward, targetDir) < maxAngle )
+				{
+					float distanceFromTarget = Vector3.Distance(transform.position, target.position);
+					if(!Physics.Raycast(transform.position, targetDir, distanceFromTarget, obstaclemask))
+					{
+						visibleTargetsList.Add(target);
+						Debug.Log(target.name);
+						if(target.CompareTag("Player"))
+						{
+							_worker.interrupt = true;
+							Debug.Log("Hitting player");
+						}
+					}
+				}
+			}
+		}
+
+
     	#endregion
     
         void Update()
         {
-            isInFOV = inFOV( transform, player, maxAngle, maxRadius);
+            // isInFOV = inFOV( transform, player, maxAngle, maxRadius);
         }
     }
 }
